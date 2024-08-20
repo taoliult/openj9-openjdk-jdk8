@@ -99,7 +99,7 @@ public class ReplayCacheTestProc {
     private static long uid;
 
     public static void main0(String[] args) throws Exception {
-        System.out.println("TAO DEBUG - In main0.")
+        System.out.println("TAO DEBUG - In main0.");
         System.setProperty("java.security.krb5.conf", OneKDC.KRB5_CONF);
         if (args.length == 0) { // The controller
             int nc = 5;     // number of clients

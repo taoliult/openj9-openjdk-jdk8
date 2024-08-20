@@ -38,7 +38,7 @@ public class Basic {
 
     public static void main(String[] args) throws Exception {
 
-        new OneKDC(null).writeJAASConf();
+        new OneKDC(null).writeJAASConf()
 
         Context c, s, s2, b;
         c = Context.fromJAAS("client");
