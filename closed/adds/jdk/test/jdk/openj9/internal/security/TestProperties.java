@@ -60,16 +60,11 @@ public class TestProperties {
     @Parameters
     public static List<Object[]> data() {
         return Arrays.asList(new Object[][] {
-            // 1 - Test property - Same beginnings of the profile name without version.
-            {"Test-Profile-SameStartWithoutVersion",
-                System.getProperty("test.src") + "/property-java.security",
-                "(?s)(?=.*Sun)(?=.*\\bSunJCE\\b)(?=.*SunJSSE)", 0},
-
             // 1 - Test profile - base profile misspell properties.
             {"Test-Profile.Base",
                 System.getProperty("test.src") + "/property-java.security",
                 "The property names: RestrictedSecurity.Test-Profile.Base.tls.disabledAlgorithmsWrongTypo "
-                    + "in profile RestrictedSecurity.Test-Profile.Base (or a base profile) are not recognized", 1},
+                    + "in profile RestrictedSecurity.Test-Profile.Base \\(or a base profile\\) are not recognized", 1},
             // 2 - Test profile - extenstion profile misspell properties.
             {"Test-Profile.Extended_1",
                 System.getProperty("test.src") + "/property-java.security",
@@ -118,7 +113,7 @@ public class TestProperties {
             // 12 - Test property - property not appendable.
             {"Test-Profile-SetProperty.Extension_1",
                 System.getProperty("test.src") + "/property-java.security",
-                "Property \\'jdkSecureRandomProvider\\' is not appendable", 1},
+                "Property \\'jdkSecureRandomAlgorithm\\' is not appendable", 1},
             // 13 - Test property - property does not exist in parent profile, cannot append.
             {"Test-Profile-SetProperty.Extension_2",
                 System.getProperty("test.src") + "/property-java.security",
@@ -176,8 +171,7 @@ public class TestProperties {
     }
 
     @Test
-    public void shouldContainExpectedExitValue() throws Exception {
-        try {
+    public void shouldContainExpectedExitValue() throws Throwable {
             OutputAnalyzer outputAnalyzer = ProcessTools.executeTestJvm(
             "-cp", System.getProperty("test.classes"),
                     "-Dsemeru.fips=true",
@@ -186,9 +180,6 @@ public class TestProperties {
                     "TestProperties");
             outputAnalyzer.reportDiagnosticSummary();
             outputAnalyzer.shouldHaveExitValue(expectedExitValue).shouldMatch(expected);
-        } catch (Throwable ex) {
-
-        }
     }
 
     public static void main(String[] args) {

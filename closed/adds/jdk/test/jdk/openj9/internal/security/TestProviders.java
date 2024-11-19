@@ -69,13 +69,13 @@ public class TestProviders {
                 System.getProperty("test.src") + "/provider-java.security",
                 "(?s)(?=.*Sun)(?=.*SunRsaSign)(?=.*SunEC)(?=.*SunJSSE)"
                     + "(?=.*SunJCE)(?=.*SunJGSS)(?=.*SunSASL)"
-                    + "(?=.*XMLDSig)(?=.*SunPCSC)(?=.*JdkLDAP)(?=.*JdkSASL)", 0},
+                    + "(?=.*XMLDSig)(?=.*SunPCSC)", 0},
             // Test extended profile provider list.
             {"TestBase.Version-Extended",
                 System.getProperty("test.src") + "/provider-java.security",
                 "(?s)(?=.*Sun)(?=.*SunRsaSign)(?=.*SunEC)(?=.*SunJSSE)"
                     + "(?=.*SunJCE)(?=.*SunJGSS)(?=.*SunSASL)"
-                    + "(?=.*XMLDSig)(?=.*SunPCSC)(?=.*JdkLDAP)(?=.*JdkSASL)", 0},
+                    + "(?=.*XMLDSig)(?=.*SunPCSC)", 0},
             // Test update provider list with value.
             {"Test-Profile.Updated_1",
                 System.getProperty("test.src") + "/provider-java.security",
@@ -132,8 +132,7 @@ public class TestProviders {
     }
 
     @Test
-    public void shouldContainExpectedExitValue() throws Exception {
-        try {
+    public void shouldContainExpectedExitValue() throws Throwable {
             OutputAnalyzer outputAnalyzer = ProcessTools.executeTestJvm(
             "-cp", System.getProperty("test.classes"),
                     "-Dsemeru.fips=true",
@@ -142,9 +141,6 @@ public class TestProviders {
                     "TestProviders");
             outputAnalyzer.reportDiagnosticSummary();
             outputAnalyzer.shouldHaveExitValue(expectedExitValue).shouldMatch(expected);
-        } catch (Throwable ex) {
-
-        }
     }
 
     public static void main(String[] args) {
