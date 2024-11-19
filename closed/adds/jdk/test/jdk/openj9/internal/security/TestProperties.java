@@ -173,7 +173,7 @@ public class TestProperties {
     @Test
     public void shouldContainExpectedExitValue() throws Throwable {
             OutputAnalyzer outputAnalyzer = ProcessTools.executeTestJvm(
-            "-cp", System.getProperty("test.classes"),
+                    "-cp", System.getProperty("test.classes"),
                     "-Dsemeru.fips=true",
                     "-Dsemeru.customprofile=" + customprofile,
                     "-Djava.security.properties=" + securityPropertyFile,
