@@ -182,6 +182,7 @@ public class TestProperties {
                 "-Dsemeru.fips=true",
                 "-Dsemeru.customprofile=" + customprofile,
                 "-Djava.security.properties=" + securityPropertyFile,
+                "-Djava.security.debug=semerufips",
                 "TestProperties");
         outputAnalyzer.reportDiagnosticSummary();
         outputAnalyzer.shouldHaveExitValue(expectedExitValue).shouldMatch(expected);
