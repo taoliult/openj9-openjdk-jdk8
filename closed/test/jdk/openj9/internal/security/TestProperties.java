@@ -61,9 +61,9 @@ public class TestProperties {
     public static List<Object[]> data() {
         return Arrays.asList(new Object[][] {
             // 1 - Test property - Same beginnings of the profile name without version.
-            ("Test-Profile-SameStartWithoutVersion",
+            {"Test-Profile-SameStartWithoutVersion",
                 System.getProperty("test.src") + "/property-java.security",
-                "(?s)(?=.*Sun)(?=.*\\bSunJCE\\b)(?=.*SunJSSE)", 0),
+                "(?s)(?=.*Sun)(?=.*\\bSunJCE\\b)(?=.*SunJSSE)", 0},
 
             // 1 - Test profile - base profile misspell properties.
             {"Test-Profile.Base",
