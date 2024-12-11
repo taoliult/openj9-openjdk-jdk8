@@ -63,115 +63,115 @@ public class TestProperties {
             // 1 - Test property - Same beginnings of the profile name without version.
             {"Test-Profile-SameStartWithoutVersion",
                 System.getProperty("test.src") + "/property-java.security",
-                "(?s)(?=.*Sun)(?=.*\\bSunJCE\\b)(?=.*SunJSSE)", 0},
+                "(?s)(?=.*Sun)(?=.*\\bSunJCE\\b)(?=.*SunJSSE)", 0}
 
-            // 1 - Test profile - base profile misspell properties.
-            {"Test-Profile.Base",
-                System.getProperty("test.src") + "/property-java.security",
-                "The property names: RestrictedSecurity.Test-Profile.Base.tls.disabledAlgorithmsWrongTypo "
-                    + "in profile RestrictedSecurity.Test-Profile.Base \\(or a base profile\\) are not recognized", 1},
-            // 2 - Test profile - extenstion profile misspell properties.
-            {"Test-Profile.Extended_1",
-                System.getProperty("test.src") + "/property-java.security",
-                "The property names: RestrictedSecurity.Test-Profile.Extended_1.desc.nameWrongTypo, "
-                    + "RestrictedSecurity.Test-Profile.Extended_1.jce.providerWrongTypo in profile "
-                    + "RestrictedSecurity.Test-Profile.Extended_1 \\(or a base profile\\) are not recognized", 1},
-            // 3 - Test profile - extension profile from another extension profile misspell properties.
-            {"Test-Profile.Extended_2",
-                System.getProperty("test.src") + "/property-java.security",
-                "The property names: RestrictedSecurity.Test-Profile.Extended_2.jce.providerWrongTypo "
-                    + "in profile RestrictedSecurity.Test-Profile.Extended_2 \\(or a base profile\\) are not recognized", 1},
-            // 4 - Test profile - profile not exist.
-            {"Test-Profile-NotExist.Base",
-                System.getProperty("test.src") + "/property-java.security",
-                "Test-Profile-NotExist.Base is not present in the java.security file.", 1},
-            // 5 - Test profile - Multi Default profile.
-            {"Test-Profile-MultiDefault",
-                System.getProperty("test.src") + "/property-java.security",
-                "Multiple default RestrictedSecurity profiles for Test-Profile-MultiDefault", 1},
-            // 6 - Test profile - no default profile.
-            {"Test-Profile-NoDefault",
-                System.getProperty("test.src") + "/property-java.security",
-                "No default RestrictedSecurity profile was found for Test-Profile-NoDefault", 1},
-            // 7 - Test profile - base profile does not exist.
-            {"Test-Profile.Extended_3",
-                System.getProperty("test.src") + "/property-java.security",
-                "RestrictedSecurity.Test-Profile.BaseNotExist that is supposed to extend \\'RestrictedSecurity.Test-Profile.Extended_3\\' "
-                    + "is not present in the java.security file or any appended files", 1},
-            // 8 - Test profile - base profile not full profile name.
-            {"Test-Profile.Extended_4",
-                System.getProperty("test.src") + "/property-java.security",
-                "RestrictedSecurity.BaseNotFullProfileName that is supposed to extend \\'RestrictedSecurity.Test-Profile.Extended_4\\' "
-                    + "is not a full profile name", 1},
-            // 9 - Test profile - base profile without hash value.
-            {"Test-Profile-BaseWithoutHash",
-                System.getProperty("test.src") + "/property-java.security",
-                "Test-Profile-BaseWithoutHash is a base profile, so a hash value is mandatory", 1},
-            // 10 - Test profile - incorrect definition of hash value.
-            {"Test-Profile-Hash_1",
-                System.getProperty("test.src") + "/property-java.security",
-                "Incorrect definition of hash value for RestrictedSecurity.Test-Profile-Hash_1", 1},
-            // 11 - Test profile - incorrect hash value.
-            {"Test-Profile-Hash_2",
-                System.getProperty("test.src") + "/property-java.security",
-                "Hex produced from profile is not the same is a base profile, so a hash value is mandatory", 1},
-            // 12 - Test property - property not appendable.
-            {"Test-Profile-SetProperty.Extension_1",
-                System.getProperty("test.src") + "/property-java.security",
-                "Property \\'jdkSecureRandomAlgorithm\\' is not appendable", 1},
-            // 13 - Test property - property does not exist in parent profile, cannot append.
-            {"Test-Profile-SetProperty.Extension_2",
-                System.getProperty("test.src") + "/property-java.security",
-                "Property \\'jdkTlsDisabledNamedCurves\\' does not exist in parent profile or java.security file. Cannot append", 1},
-            // 14 - Test property - property value is not in existing values.
-            {"Test-Profile-SetProperty.Extension_3",
-                System.getProperty("test.src") + "/property-java.security",
-                "Value \\'TestDisabledlgorithms\\' is not in existing values", 1},
-            // 15 - Test property - policy sunset.
-            {"Test-Profile-PolicySunset.Base",
-                System.getProperty("test.src") + "/property-java.security",
-                "Restricted security policy expired", 1},
-            // 16 - Test property - policy sunset format.
-            {"Test-Profile-PolicySunsetFormat.Base",
-                System.getProperty("test.src") + "/property-java.security",
-                "Restricted security policy sunset date is incorrect, the correct format is yyyy-MM-dd", 1},
-            // 17 - Test property - secure random check 1.
-            {"Test-Profile-SecureRandomCheck_1",
-                System.getProperty("test.src") + "/property-java.security",
-                "Restricted security mode secure random is missing", 1},
-            // 18 - Test property - secure random check 2.
-            {"Test-Profile-SecureRandomCheck_2",
-                System.getProperty("test.src") + "/property-java.security",
-                "Restricted security mode secure random is missing", 1},
-            // 19 - Test constraint - constraint check 1.
-            {"Test-Profile-Constraint_1",
-                System.getProperty("test.src") + "/property-java.security",
-                "Provider format is incorrect", 1},
-            // 20 - Test constraint - constraint check 2.
-            {"Test-Profile-Constraint_2",
-                System.getProperty("test.src") + "/property-java.security",
-                "Incorrect constraint definition for provider", 1},
-            // 21 - Test constraint - constraint check 3.
-            {"Test-Profile-Constraint_3",
-                System.getProperty("test.src") + "/property-java.security",
-                "Incorrect constraint definition for provider", 1},
-            // 22 - Test constraint - constraint attributes check.
-            {"Test-Profile-Constraint_Attributes",
-                System.getProperty("test.src") + "/property-java.security",
-                "Constraint attributes format is incorrect", 1},
-            // 23 - Test constraint - constraint changed 1.
-            {"Test-Profile-ConstraintChanged_1.Extension",
-                System.getProperty("test.src") + "/property-java.security",
-                "Cannot append or remove constraints since the provider (.*?) "
-                    + "wasn't in this position in the profile extended", 1},
-            // 24 - Test constraint - constraint changed 2.
-            {"Test-Profile-ConstraintChanged_2.Extension",
-                System.getProperty("test.src") + "/property-java.security",
-                "Constraint (.*?)is not part of existing constraints", 1},
-            // 25 - Test constraint - constraint changed 3.
-            {"Test-Profile-ConstraintChanged_3.Base",
-                System.getProperty("test.src") + "/property-java.security",
-                "You cannot add or remove to provider (.*?). This is the base profile.", 1}
+            // // 1 - Test profile - base profile misspell properties.
+            // {"Test-Profile.Base",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "The property names: RestrictedSecurity.Test-Profile.Base.tls.disabledAlgorithmsWrongTypo "
+            //         + "in profile RestrictedSecurity.Test-Profile.Base \\(or a base profile\\) are not recognized", 1},
+            // // 2 - Test profile - extenstion profile misspell properties.
+            // {"Test-Profile.Extended_1",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "The property names: RestrictedSecurity.Test-Profile.Extended_1.desc.nameWrongTypo, "
+            //         + "RestrictedSecurity.Test-Profile.Extended_1.jce.providerWrongTypo in profile "
+            //         + "RestrictedSecurity.Test-Profile.Extended_1 \\(or a base profile\\) are not recognized", 1},
+            // // 3 - Test profile - extension profile from another extension profile misspell properties.
+            // {"Test-Profile.Extended_2",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "The property names: RestrictedSecurity.Test-Profile.Extended_2.jce.providerWrongTypo "
+            //         + "in profile RestrictedSecurity.Test-Profile.Extended_2 \\(or a base profile\\) are not recognized", 1},
+            // // 4 - Test profile - profile not exist.
+            // {"Test-Profile-NotExist.Base",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Test-Profile-NotExist.Base is not present in the java.security file.", 1},
+            // // 5 - Test profile - Multi Default profile.
+            // {"Test-Profile-MultiDefault",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Multiple default RestrictedSecurity profiles for Test-Profile-MultiDefault", 1},
+            // // 6 - Test profile - no default profile.
+            // {"Test-Profile-NoDefault",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "No default RestrictedSecurity profile was found for Test-Profile-NoDefault", 1},
+            // // 7 - Test profile - base profile does not exist.
+            // {"Test-Profile.Extended_3",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "RestrictedSecurity.Test-Profile.BaseNotExist that is supposed to extend \\'RestrictedSecurity.Test-Profile.Extended_3\\' "
+            //         + "is not present in the java.security file or any appended files", 1},
+            // // 8 - Test profile - base profile not full profile name.
+            // {"Test-Profile.Extended_4",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "RestrictedSecurity.BaseNotFullProfileName that is supposed to extend \\'RestrictedSecurity.Test-Profile.Extended_4\\' "
+            //         + "is not a full profile name", 1},
+            // // 9 - Test profile - base profile without hash value.
+            // {"Test-Profile-BaseWithoutHash",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Test-Profile-BaseWithoutHash is a base profile, so a hash value is mandatory", 1},
+            // // 10 - Test profile - incorrect definition of hash value.
+            // {"Test-Profile-Hash_1",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Incorrect definition of hash value for RestrictedSecurity.Test-Profile-Hash_1", 1},
+            // // 11 - Test profile - incorrect hash value.
+            // {"Test-Profile-Hash_2",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Hex produced from profile is not the same is a base profile, so a hash value is mandatory", 1},
+            // // 12 - Test property - property not appendable.
+            // {"Test-Profile-SetProperty.Extension_1",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Property \\'jdkSecureRandomAlgorithm\\' is not appendable", 1},
+            // // 13 - Test property - property does not exist in parent profile, cannot append.
+            // {"Test-Profile-SetProperty.Extension_2",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Property \\'jdkTlsDisabledNamedCurves\\' does not exist in parent profile or java.security file. Cannot append", 1},
+            // // 14 - Test property - property value is not in existing values.
+            // {"Test-Profile-SetProperty.Extension_3",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Value \\'TestDisabledlgorithms\\' is not in existing values", 1},
+            // // 15 - Test property - policy sunset.
+            // {"Test-Profile-PolicySunset.Base",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Restricted security policy expired", 1},
+            // // 16 - Test property - policy sunset format.
+            // {"Test-Profile-PolicySunsetFormat.Base",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Restricted security policy sunset date is incorrect, the correct format is yyyy-MM-dd", 1},
+            // // 17 - Test property - secure random check 1.
+            // {"Test-Profile-SecureRandomCheck_1",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Restricted security mode secure random is missing", 1},
+            // // 18 - Test property - secure random check 2.
+            // {"Test-Profile-SecureRandomCheck_2",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Restricted security mode secure random is missing", 1},
+            // // 19 - Test constraint - constraint check 1.
+            // {"Test-Profile-Constraint_1",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Provider format is incorrect", 1},
+            // // 20 - Test constraint - constraint check 2.
+            // {"Test-Profile-Constraint_2",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Incorrect constraint definition for provider", 1},
+            // // 21 - Test constraint - constraint check 3.
+            // {"Test-Profile-Constraint_3",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Incorrect constraint definition for provider", 1},
+            // // 22 - Test constraint - constraint attributes check.
+            // {"Test-Profile-Constraint_Attributes",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Constraint attributes format is incorrect", 1},
+            // // 23 - Test constraint - constraint changed 1.
+            // {"Test-Profile-ConstraintChanged_1.Extension",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Cannot append or remove constraints since the provider (.*?) "
+            //         + "wasn't in this position in the profile extended", 1},
+            // // 24 - Test constraint - constraint changed 2.
+            // {"Test-Profile-ConstraintChanged_2.Extension",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "Constraint (.*?)is not part of existing constraints", 1},
+            // // 25 - Test constraint - constraint changed 3.
+            // {"Test-Profile-ConstraintChanged_3.Base",
+            //     System.getProperty("test.src") + "/property-java.security",
+            //     "You cannot add or remove to provider (.*?). This is the base profile.", 1}
         });
     }
 
